@@ -20,7 +20,8 @@ function paintTodo(newTodo) {
   const span = document.createElement("span");
   const button = document.createElement("button");
   
-  span.innerText = newTodo;
+  li.id = newTodo.id;
+  span.innerText = newTodo.text;
   button.innerText = "X";
   button.addEventListener("click", deleteToDo);
   
@@ -33,8 +34,12 @@ function handleToDoSubmit(event) {
   event.preventDefault();
   const newTodo = toDoInput.value; 
   toDoInput.value = "";
-  toDos.push(newTodo);
-  paintTodo(newTodo);
+  const newTodoObj = {
+    text: newTodo,
+    id: Date.now(),
+  };
+  toDos.push(newTodoObj);
+  paintTodo(newTodoObj);
   saveToDos();
 }
 
